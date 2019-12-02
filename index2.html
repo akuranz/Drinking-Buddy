@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Giphy API</title>
+  </head>
+
+  <body>
+    <div id="breweryName"></div>
+    <div id="status"></div>
+    <div id="overallRating"></div>
+    <div id="blogMap"></div>
+    <div id="street"></div>
+    <div id="city"></div>
+    <div id="state"></div>
+    <div id="zip"></div>
+    <div id="website"></div>
+    <div id="phone"></div>
+    <div id="imagecount"></div>
+    <div id="reviewLink"></div>
+    <div id="proxyLink"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      // Example queryURL for Giphy API
+      var APIKey = "10418444aeb3ca5b2578412ce0662909";
+      var state = "co";
+      var queryURL =
+        "http://beermapping.com/webservice/locstate/" +
+        APIKey +
+        "/" +
+        state +
+        "&s=json";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+
+        var indexNum = 500;
+        $("#breweryName").text("Name: " + response[indexNum].name);
+        $("#status").text("Status: " + response[indexNum].status);
+        $("#overallRating").text("Rating: " + response[indexNum].overall);
+        $("#blogMap").text("Blog Map: " + response[indexNum].blogmap);
+        $("#street").text("Street: " + response[indexNum].street);
+        $("city").text("City: " + response[indexNum].city);
+        $("#state").text("State: " + response[indexNum].state);
+        $("#zip").text("Zip: " + response[indexNum].zip);
+        $("#country").text("Country: " + response[indexNum].country);
+        $("#website").html("Website: " + response[indexNum].url);
+        $("#phone").text("Phone: " + response[indexNum].phone);
+        $("#imagecount").text("Image Count: " + response[indexNum].imagecount);
+        $("#reviewLink").text("Review Link: " + response[indexNum].reviewLink);
+        $("#proxyLink").text("Proxy Link: " + response[indexNum].proxyLink);
+      });
+
+      var queryURLbeers =
+        "https://api.openbrewerydb.org/breweries?by_state=colorado";
+
+      $.ajax({
+        url: queryURLbeers,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+      });
+    </script>
+  </body>
+</html>
