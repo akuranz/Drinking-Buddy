@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Brewery Finder</title>
+  </head>
+  <style>
+    #map {
+      height: 100%;
+    }
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  <body>
+    <div class="row">
+      <!--https://beermapping.com/api/reference/-->
+      <div class="col-md">
+        <input type="text" id="name-query" />
+        <button id="search-name">Brewery Name (Beer Mapping)</button>
+      </div>
+      <div class="col-md">
+        <input type="text" id="city-state-query" />
+        <button id="search-city-state">Brewery City,ST (Beer Mapping)</button>
+      </div>
+      <div class="col-md">
+        <input type="text" id="state-query" />
+        <button id="search-state">Brewery City (Beer Mapping)</button>
+      </div>
+      <div class="col-md">
+        <input type="text" id="id-query-map" />
+        <button id="search-id-map">Brewery ID Location (Beer Mapping)</button>
+      </div>
+      <div class="col-md">
+        <input type="text" id="id-query-score" />
+        <button id="search-id-score">Brewery ID Score (Beer Mapping)</button>
+      </div>
+      <div class="col-md">
+        <input type="text" id="id-query-image" />
+        <button id="search-id-image">Brewery ID Image (Beer Mapping)</button>
+      </div>
+    </div>
+
+    <div class="row>">
+      <div class="col-md">
+        <h1>Beer Mapping Return Info Options</h1>
+        <div id="breweryName"></div>
+        <div id="status"></div>
+        <div id="overallRating"></div>
+        <div id="blogMap"></div>
+        <!--is the url of a proximity map that is intended to be embedded in an iframe and it can be posted in a blog or site.-->
+        <div id="street"></div>
+        <div id="city"></div>
+        <div id="state"></div>
+        <div id="zip"></div>
+        <div id="country"></div>
+        <div id="website"></div>
+        <div id="phone"></div>
+        <div id="imagecount"></div>
+        <div id="reviewLink"></div>
+        <!--is the review page on beermapping.com-->
+        <div id="proxyLink"></div>
+        <!--is a map showing the location and all locations within a specific proximity. The default proximity of this map is 5 miles.-->
+      </div>
+      <div class="row">
+        <!--https://www.openbrewerydb.org/-->
+        <div class="col-md">
+          <input type="text" id="by-city-query" />
+          <button id="search-by-city">Brewery City (Open Brewery)</button>
+        </div>
+        <div class="col-md">
+          <input type="text" id="by-name-query" />
+          <button id="search-by-name">
+            Brewery Name (Open Brewery)
+          </button>
+        </div>
+        <div class="col-md">
+          <input type="text" id="by-state-query" />
+          <button id="search-by-state">Brewery State (Open Brewery)</button>
+        </div>
+        <div class="col-md">
+          <input type="text" id="by-type-query" />
+          <button id="search-by-type">
+            Brewery Type (Open Brewery)
+          </button>
+        </div>
+        <div class="col-md">
+          <input type="text" id="by-tag-query" />
+          <button id="search-by-tag">
+            Brewery Tag (Open Brewery)
+          </button>
+        </div>
+        <div class="col-md">
+          <input type="text" id="by-tags-query" />
+          <button id="search-by-tags">
+            Brewery Tags (Open Brewery)
+          </button>
+        </div>
+        <div class="col-md">
+          <input type="text" id="by-sort-query" />
+          <button id="search-by-sort">
+            Brewery Sort (Open Brewery)
+          </button>
+        </div>
+        <div class="col-md">
+          <input type="text" id="pagination" />
+          <button id="return-pagination">
+            Brewery Pagination (Open Brewery)
+          </button>
+        </div>
+        <div class="col-md">
+          <input type="text" id="per page" />
+          <button id="return-per-page">
+            Brewery Per Page (Open Brewery)
+          </button>
+        </div>
+        <div class="col-md">
+          <input type="text" id="by-id" />
+          <button id="return-by-id">
+            Brewery ID (Open Brewery)
+          </button>
+        </div>
+        <div class="col-md">
+          <input type="text" id="by-autocomplete" />
+          <button id="return-autocomplete">
+            Brewery Autocomplete (Open Brewery)
+          </button>
+        </div>
+        <div class="col-md">
+          <input type="text" id="by-search" />
+          <button id="return-search">
+            Brewery Search (Open Brewery)
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md">
+          <h1>Open Brewery Return Info Options</h1>
+          <div id="breweryType_OB"></div>
+          <div id="name_OB"></div>
+          <div id="country_OB"></div>
+          <div id="id_OB"></div>
+          <div id="street_OB"></div>
+          <div id="city_OB"></div>
+          <div id="state_OB"></div>
+          <div id="postal_code_OB"></div>
+          <div id="website_url_OB"></div>
+          <div id="phone_OB"></div>
+          <div id="last_update_OB"></div>
+          <div id="lat_OB"></div>
+          <div id="long_OB"></div>
+          <div id="tag_list_OB"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      // query URL for beer mapping API
+
+      // var queryURLopen =
+      //   "https://api.openbrewerydb.org/breweries?by_city=denverpage=1&per_page=30";
+
+      // $.ajax({
+      //   url: queryURLopen,
+      //   method: "GET"
+      // }).then(function(response) {
+      //   console.log(response);
+
+      //   var OBNum = 0;
+      //   $("#breweryType_OB").text(
+      //     "Brewery Type: " + response[OBNum].brewery_type
+      //   );
+      //   $("#name_OB").text("Name: " + response[OBNum].name);
+      //   $("#country_OB").text("Country: " + response[OBNum].country);
+      //   $("#id_OB").text("ID: " + response[OBNum].id);
+      //   $("#street_OB").text("Street: " + response[OBNum].street);
+      //   $("city_OB").text("City: " + response[OBNum].city);
+      //   $("#state_OB").text("State: " + response[OBNum].state);
+      //   $("#postal_code_OB").text("Zip: " + response[OBNum].zip);
+      //   $("#website_url_OB").html("Website: " + response[OBNum].website_url);
+      //   $("#phone_OB").text("Phone: " + response[OBNum].phone);
+      //   $("#last_update_OB").text(
+      //     "Last Updated: " + response[OBNum].updated_at
+      //   );
+      //   $("#lat_OB").text("Lat: " + response[OBNum].latitude);
+      //   $("#long_OB").text("Long: " + response[OBNum].longitude);
+      //   $("#tag_list_OB").text("Tags: " + response[OBNum].tag_list); //this is an array
+
+      //   var openBrewArr = [];
+      //   for (var i = 0; i < 20; i++) {
+      //     var openBrewDomain = response[i].website_url.split(".")[1];
+      //     openBrewArr.push(openBrewDomain);
+      //   }
+      //   console.log(openBrewArr);
+      // var APIKey = "10418444aeb3ca5b2578412ce0662909";
+      // var state = "co";
+      // var queryURLbeerMappingState =
+      //   "http://beermapping.com/webservice/locstate/" +
+      //   APIKey +
+      //   "/" +
+      //   state +
+      //   "&s=json";
+
+      // $.ajax({
+      //   url: queryURLbeerMappingState,
+      //   method: "GET"
+      // }).then(function(response) {
+      //   console.log(response);
+
+      //   var brewMappingArr = [];
+      //   for (var i = 0; i < response.length; i++) {
+      //     var brewMappingDomain = response[i].url.split(".")[0];
+      //     brewMappingArr.push(brewMappingDomain);
+      //   }
+      //   console.log(brewMappingArr);
+
+      // const intersection = openBrewArr.filter(element =>
+      //   brewMappingArr.includes(element)
+      // );
+      // console.log(intersection);
+      // });
+
+      //Search by State or City
+      var APIKey = "10418444aeb3ca5b2578412ce0662909";
+      var state = "co";
+      var queryURLbeerMappingState =
+        "http://beermapping.com/webservice/locstate/" +
+        APIKey +
+        "/" +
+        state +
+        "&s=json";
+
+      $.ajax({
+        url: queryURLbeerMappingState,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+
+        // var brewMappingArr = [];
+        // for (var i = 0; i < response.length; i++) {
+        //   var brewMappingDomain = response[i].url.split(".")[0];
+        //   brewMappingArr.push(brewMappingDomain);
+        // }
+        // console.log(brewMappingArr);
+
+        // const intersection = openBrewArr.filter(element =>
+        //   brewMappingArr.includes(element)
+        // );
+        // console.log(intersection);
+      });
+
+      //Search by Name
+      var APIKey = "10418444aeb3ca5b2578412ce0662909";
+      var piece = "piece";
+      var queryURLbeerMappingName =
+        "http://beermapping.com/webservice/locquery/" +
+        APIKey +
+        "/" +
+        piece +
+        "&s=json";
+
+      $.ajax({
+        url: queryURLbeerMappingName,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+      });
+
+      //Map Info by ID
+      var APIKey = "10418444aeb3ca5b2578412ce0662909";
+      var ID = "1000";
+      var queryURLbeerMappingLocInfo =
+        "http://beermapping.com/webservice/locmap/" +
+        APIKey +
+        "/" +
+        ID +
+        "&s=json";
+
+      $.ajax({
+        url: queryURLbeerMappingLocInfo,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+      });
+
+      //Map Info by Score
+      var APIKey = "10418444aeb3ca5b2578412ce0662909";
+      var ID1 = "1000";
+      var queryURLbeerMappingLocInfo =
+        "http://beermapping.com/webservice/locscore/" +
+        APIKey +
+        "/" +
+        ID1 +
+        "&s=json";
+
+      $.ajax({
+        url: queryURLbeerMappingLocInfo,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+      });
+
+      var queryURLCocktail =
+        "https://www.thecocktaildb.com/api/json/v1/1/random.php" +
+        $.ajax({
+          url: queryURLCocktail,
+          method: "GET"
+        }).then(function(response) {
+          console.log(response);
+        });
+
+      //Location Images
+      // var APIKey = "10418444aeb3ca5b2578412ce0662909";
+      // var ID3 = "1000";
+      // var queryURLbeerMappingImageInfo =
+      //   "https://cors-anywhere.herokuapp.com/http://beermapping.com/webservice/locimage/" +
+      //   APIKey +
+      //   "/" +
+      //   ID3 +
+      //   "&s=json";
+
+      // $.ajax({
+      //   url: queryURLbeerMappingImageInfo,
+      //   method: "GET"
+      // }).then(function(response) {
+      //   console.log(response);
+      // });
+    </script>
+
+    <script>
+      var GoogleAPIKey = "AIzaSyBRSdoZacWWmoazbfG4tJit38vbOI-t6ww";
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 39.7392, lng: -104.9903 },
+          zoom: 8
+        });
+      }
+    </script>
+
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRSdoZacWWmoazbfG4tJit38vbOI-t6ww&callback=initMap"
+    ></script>
+  </body>
+</html>

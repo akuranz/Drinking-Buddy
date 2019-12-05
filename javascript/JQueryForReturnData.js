@@ -1,0 +1,31 @@
+var OBNum = 0;
+$("#breweryType_OB").text("Brewery Type: " + response[OBNum].brewery_type);
+$("#name_OB").text("Name: " + response[OBNum].name);
+$("#country_OB").text("Country: " + response[OBNum].country);
+$("#id_OB").text("ID: " + response[OBNum].id);
+$("#street_OB").text("Street: " + response[OBNum].street);
+$("city_OB").text("City: " + response[OBNum].city);
+$("#state_OB").text("State: " + response[OBNum].state);
+$("#postal_code_OB").text("Zip: " + response[OBNum].zip);
+$("#website_url_OB").html("Website: " + response[OBNum].website_url);
+$("#phone_OB").text("Phone: " + response[OBNum].phone);
+$("#last_update_OB").text("Last Updated: " + response[OBNum].updated_at);
+$("#lat_OB").text("Lat: " + response[OBNum].latitude);
+$("#long_OB").text("Long: " + response[OBNum].longitude);
+$("#tag_list_OB").text("Tags: " + response[OBNum].tag_list); //this is an array
+
+var indexNum = 0;
+$("#breweryName").text("Name: " + response[indexNum].name);
+$("#status").text("Status: " + response[indexNum].status);
+$("#overallRating").text("Rating: " + response[indexNum].overall);
+$("#blogMap").text("Blog Map: " + response[indexNum].blogmap);
+$("#street").text("Street: " + response[indexNum].street);
+$("city").text("City: " + response[indexNum].city);
+$("#state").text("State: " + response[indexNum].state);
+$("#zip").text("Zip: " + response[indexNum].zip);
+$("#country").text("Country: " + response[indexNum].country);
+$("#website").html("Website: " + response[indexNum].url);
+$("#phone").text("Phone: " + response[indexNum].phone);
+$("#imagecount").text("Image Count: " + response[indexNum].imagecount);
+$("#reviewLink").text("Review Link: " + response[indexNum].reviewLink);
+$("#proxyLink").text("Proxy Link: " + response[indexNum].proxyLink);
