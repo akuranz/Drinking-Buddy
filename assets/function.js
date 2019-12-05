@@ -23,3 +23,13 @@ $.ajax({
   console.log(response);
 });
 });
+
+// var GoogleAPIKey = "AIzaSyBRSdoZacWWmoazbfG4tJit38vbOI-t6ww";
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 39.7392, lng: -104.9903 },
+    zoom: 8
+  });
+}
+
