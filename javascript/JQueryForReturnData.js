@@ -73,7 +73,7 @@ $.ajax({
         .attr("class", "fas fa-location-arrow")
         .attr("id", "url")
         .attr("href", "http://www." + response[i].url)
-        .attr("target", "_blank"),
+        .attr("target", "_blank"), //how do we open in a new window?
       $("<i>")
         .attr("class", "fas fa-phone")
         .attr("id", "phone")
@@ -83,7 +83,7 @@ $.ajax({
       $("<i>")
         .attr("class", "fas fa-globe-americas")
         .attr("id", "directions")
-        .attr("href", "./direction.html")
+        .attr("href", "directions.html")
         .attr("data-id", response[i].id)
     ];
 
@@ -106,7 +106,8 @@ $.ajax({
 
   $("#directions").click(function(e) {
     e.preventDefault();
-    console.log("./directions.html");
+    window.location = $(this).attr("href");
+    console.log($(this).attr("href"));
 
     var APIKey = "10418444aeb3ca5b2578412ce0662909";
     var ID = $(this).attr("data-id");
