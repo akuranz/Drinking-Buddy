@@ -35,6 +35,7 @@ function initMap() {
 
 // Cocktail API
 function renderCocktail(){
+  $(".randomCocktail").css("display", "block");
     var queryURLCocktail = "https://thecocktaildb.com/api/json/v1/1/random.php";
     $.ajax({
     url:queryURLCocktail,
