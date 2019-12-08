@@ -24,6 +24,10 @@
             </div>
         </div>
     </div>
+    <div class= "row justify-content-center" id="inOut">
+        <button class="btn step">Going out?</button>
+        <button class="btn step cocktail">Staying in?</button>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <input type="text" placeholder="Enter a Zip Code"><button type="submit" class="btn">Find My Beer!</button>
@@ -94,21 +98,22 @@
             </div>
         </div>
         <!-- End Carousel -->
+        <div class="container randomCocktail">
+            <h2>Into cocktails? Check this one out!</h2>
+            <div class="container stepCocktail card">
+                <div id="image"></div>
+                <div id="name"></div>
+                <div id="ingredients"></div>
+                <div id="directions"></div>
+                <div id="idk" class="cocktail"></div>
+            </div>
+        </div>
     </div>
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
 <script src="assets/function.js"></script> 
-<script>
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 39.7392, lng: -104.9903 },
-    zoom: 8
-  });
-}
-</script>
 <script
     async
       defer
