@@ -49,9 +49,9 @@ $.ajax({
 }).then(function(response) {
   console.log(response);
   for (var i = 0; i < 10; i++) {
-    var sliderItem = $("<div>")
-      .attr("class", "slider-item")
-      .attr("style", "width: 374px;");
+    // var sliderItem = $("<div>")
+    //   .attr("class", "slider-item")
+    //   .attr("style", "width: 374px;");
     var breweryCard = $("<div>").attr("class", "item-1 card");
     var breweryInfo = [
       // $("<iframe>").attr("src", response[i].blogmap), //could make this into iframe if we have time
@@ -72,12 +72,13 @@ $.ajax({
       $("<i>")
         .attr("class", "fas fa-location-arrow")
         .attr("id", "url")
-        .attr("href", "htpp://www." + response[i].url),
+        .attr("href", "http://www." + response[i].url)
+        .attr("target", "_blank"),
       $("<i>")
         .attr("class", "fas fa-phone")
         .attr("id", "phone")
         .attr("data-phone", response[i].phone)
-        .attr("href", response[i].phone),
+        .attr("href", "tel:+01" + response[i].phone),
 
       $("<i>")
         .attr("class", "fas fa-globe-americas")
@@ -88,17 +89,19 @@ $.ajax({
 
     $(breweryContact).append(contactInfo);
     $(breweryCard).append(breweryContact);
-    $(sliderItem).append(breweryCard);
-    $(".slider-container").append(sliderItem);
+    // $(sliderItem).append(breweryCard);
+    $(".carousel").append(breweryCard);
   }
   $("#url").click(function(e) {
     e.preventDefault();
     window.location = $(this).attr("href");
+    console.log($(this).attr("href"));
   });
 
   $("#phone").click(function(e) {
     e.preventDefault();
-    console.log(response[i].phone);
+    window.location = $(this).attr("href");
+    console.log($(this).attr("href"));
   });
 
   $("#directions").click(function(e) {
