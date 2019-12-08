@@ -11,27 +11,36 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
+
     <link rel="stylesheet" href="assets/style.css" />
 
     <title>Brewery Finder</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="header">
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">Beer Finder</h1>
-                <p class="lead">Your home for finding your new  favorite beer closest to home!</p>
-            </div>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Beer Finder</h1>
+          <p class="lead">
+            Your home for finding your new favorite beer closest to home!
+          </p>
         </div>
+      </div>
     </div>
     <div class="container">
-        <div class="row justify-content-center">
-            <input type="text" placeholder="Enter a Zip Code"><button type="submit" class="btn">Find My Beer!</button>
-        </div>
+      <div class="row justify-content-center">
+        <input
+          type="text"
+          placeholder="Enter a Zip Code"
+          id="find-brewery"
+        /><button type="submit" class="btn">
+          Find My Beer!
+        </button>
+      </div>
     </div>
 
-        <section class="section">
-    <div class="container step2">
+    <section class="section">
+      <div class="container step2">
         <!-- Start Carousel -->
         <div id="carousel-demo" class="carousel">
             <div class="item-1 card">
@@ -92,27 +101,28 @@
                     <!--            <i class="fa fa-chevron-right"></i> -->
                 </p>
             </div>
+
         </div>
         <!-- End Carousel -->
-    </div>
-</section>
+      </div>
+    </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
-<script src="assets/function.js"></script> 
-<script>
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 39.7392, lng: -104.9903 },
-    zoom: 8
-  });
-}
-</script>
-<script
-    async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRSdoZacWWmoazbfG4tJit38vbOI-t6ww&callback=initMap"
+
+    <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+    <script src="assets/function.js"></script> 
+    <script>
+      bulmaCarousel.attach("#carousel-demo", {
+        slidesToScroll: 1,
+        slidesToShow: 3
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="javascript/JQueryForReturnData.js"
     ></script>
+  </body>
+</html>
 </body>
 </html>
+
