@@ -11,31 +11,40 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
+
     <link rel="stylesheet" href="assets/style.css" />
 
     <title>Brewery Finder</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="header">
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">Beer Finder</h1>
-                <p class="lead">Your home for finding your new  favorite beer closest to home!</p>
-            </div>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Beer Finder</h1>
+          <p class="lead">
+            Your home for finding your new favorite beer closest to home!
+          </p>
         </div>
+      </div>
     </div>
     <div class= "row justify-content-center" id="inOut">
         <button class="btn step">Going out?</button>
         <button class="btn step cocktail">Staying in?</button>
     </div>
     <div class="container">
-        <div class="row justify-content-center">
-            <input type="text" placeholder="Enter a Zip Code"><button type="submit" class="btn">Find My Beer!</button>
-        </div>
+      <div class="row justify-content-center">
+        <input
+          type="text"
+          placeholder="Enter a Zip Code"
+          id="find-brewery"
+        /><button type="submit" class="btn">
+          Find My Beer!
+        </button>
+      </div>
     </div>
 
-        <section class="section">
-    <div class="container step2">
+    <section class="section">
+      <div class="container step2">
         <!-- Start Carousel -->
         <div id="carousel-demo" class="carousel">
             <div class="item-1 card">
@@ -96,6 +105,7 @@
                     <!--            <i class="fa fa-chevron-right"></i> -->
                 </p>
             </div>
+
         </div>
         <!-- End Carousel -->
         <div class="container randomCocktail">
@@ -118,6 +128,14 @@
     async
       defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRSdoZacWWmoazbfG4tJit38vbOI-t6ww&callback=initMap"
+      </div>
+        <script
+      type="text/javascript"
+      src="javascript/JQueryForReturnData.js"
     ></script>
+    </section>
+  </body>
+</html>
 </body>
 </html>
+
