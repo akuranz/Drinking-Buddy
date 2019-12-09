@@ -1,5 +1,5 @@
 // BULMA Carousel
-bulmaCarousel.attach('#carousel-demo', {
+bulmaCarousel.attach('.carousel', {
     slidesToScroll: 1,
     slidesToShow: 3
 });

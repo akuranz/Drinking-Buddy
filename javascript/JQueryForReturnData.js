@@ -52,7 +52,7 @@ $.ajax({
     // var sliderItem = $("<div>")
     //   .attr("class", "slider-item")
     //   .attr("style", "width: 374px;");
-    var breweryCard = $("<div>").attr("class", "item-1 card");
+    var breweryCard = $("<div>").attr("class", `"item-${[i+1]} card slide"`);
     var breweryInfo = [
       // $("<iframe>").attr("src", response[i].blogmap), //could make this into iframe if we have time
       $("<img>").attr("src", "assets/images/brewery.png"),
@@ -90,7 +90,7 @@ $.ajax({
     $(breweryContact).append(contactInfo);
     $(breweryCard).append(breweryContact);
     // $(sliderItem).append(breweryCard);
-    $(".carousel").append(breweryCard);
+    $(".slider").append(breweryCard);
   }
   $("#url").click(function(e) {
     e.preventDefault();
