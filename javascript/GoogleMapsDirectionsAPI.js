@@ -8,11 +8,27 @@ function initMap() {
     zoom: 12
   });
 
+  // var TravelType;
+  // $(".fa-car-side").on("click", function() {
+  //   TravelType = "DRIVING";
+  //   alert("driving!");
+  //   console.log(TravelType);
+  // });
+  // $(".fa-walking").on("click", function() {
+  //   TravelType = "WALKING";
+  //   alert("walking!");
+  //   console.log(TravelType);
+  // });
+  // // console.log(travelType);
+
   function myLocation() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function(position) {
         infoWindow = new google.maps.InfoWindow({ map: map });
-        pos = { lat: position.coords.latitude, lng: position.coords.longitude };
+        pos = {
+          lat: parseFloat(position.coords.latitude),
+          lng: parseFloat(position.coords.longitude)
+        };
         infoWindow.setPosition(pos);
         infoWindow.setContent(
           "Your location <br />Lat : " +
@@ -24,7 +40,7 @@ function initMap() {
         console.log("lat", typeof position.coords.latitude);
         console.log("lng", typeof position.coords.longitude);
         console.log("Position", pos);
-        getDirections();
+        getRoute();
       });
     } else {
       console.log("Browser doesn't support geolocation!");
@@ -36,6 +52,9 @@ function initMap() {
   //Location of Breweries
   const breweryLocation = { lat: 39.7583143, lng: -105.0072502 };
 
+  // const breweryLocation = JSON.parse(localStorage.getItem("Brewery Lat/Long"));
+  console.log("From Local", breweryLocation);
+
   //The markers for the breweries
   var mk2 = new google.maps.Marker({ position: breweryLocation, map: map });
 
@@ -45,12 +64,14 @@ function initMap() {
   console.log(directionsRenderer);
   directionsRenderer.setMap(map); // Existing map object displays directions
   // Create route from existing points used for markers
-  function getDirections() {
+  function getRoute() {
     const route = {
       origin: pos, //LAT, LONG
       destination: breweryLocation, //LAT, LONG
-      travelMode: "DRIVING" //DRIVING | BICYCLING | TRANSIT | WALKING
+      travelMode: "DRIVING"
     };
+
+    console.log(breweryLocation);
 
     directionsService.route(route, function(response, status) {
       // anonymous function to capture directions
@@ -62,6 +83,14 @@ function initMap() {
         console.log(response);
         var directionsData = response.routes[0].legs[0]; // Get data about the mapped route
         console.log(directionsData);
+        for (var i = 0; i < directionsData.steps.length; i++) {
+          var newStep = directionsData.steps[i].instructions;
+          $(".list-group").append(
+            $("<li>")
+              .html(newStep)
+              .attr("class", "list-group-item")
+          );
+        }
 
         if (!directionsData) {
           window.alert("Directions request failed");
@@ -77,4 +106,11 @@ function initMap() {
       }
     });
   }
+  // getDirections();
+  console.log(directionsRenderer);
+
+  // function getDirections() {
+  //   var newStep = $("<li>").html(directionsService.steps[0].instructions);
+  //   $("#list-group").append(newStep);
+  // }
 }
