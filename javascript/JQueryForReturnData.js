@@ -8,6 +8,8 @@ $(".out").on("click", function() {
 
 $("#search-brewery").on("click", function(e) {
   e.preventDefault();
+
+  var APIKey = "10418444aeb3ca5b2578412ce0662909";
   var city = $("#find-brewery")
     .val()
     .trim();
@@ -15,59 +17,6 @@ $("#search-brewery").on("click", function(e) {
     $("#error").attr("style", "display:block");
   } else {
     $("#error").attr("style", "display:none");
-var APIKey = "10418444aeb3ca5b2578412ce0662909";
-var state = $("#find-brewery").val() || "co";
-var queryURLbeerMappingState =
-  "https://cors-anywhere.herokuapp.com/http://beermapping.com/webservice/locstate/" +
-  APIKey +
-  "/" +
-  state +
-  "&s=json";
-
-$.ajax({
-  url: queryURLbeerMappingState,
-  method: "GET"
-}).then(function(response) {
-  console.log(response);
-  for (var i = 0; i < 10; i++) {
-    var breweryCard = $("<div>").attr("class", `"item-${[i+1]} card slide"`);
-    var breweryInfo = [
-      // $("<iframe>").attr("src", response[i].blogmap), //could make this into iframe if we have time
-      $("<img>").attr("src", "assets/images/brewery.png"),
-      $("<h4>").text(response[i].name),
-      $("<p>").text(response[i].street),
-      $("<p>").text(
-        response[i].city + ", " + response[i].state + response[i].zip
-      )
-    ];
-    $(breweryCard).append(breweryInfo);
-
-    var breweryContact = $("<div>").attr(
-      "class",
-      "cta row justify-content-center"
-    );
-    var contactInfo = [
-      $("<i>")
-        .attr("class", "fas fa-location-arrow")
-        .attr("id", "url")
-        .attr("href", "http://www." + response[i].url)
-        .attr("target", "_blank"), //how do we open in a new window?
-      $("<i>")
-        .attr("class", "fas fa-phone")
-        .attr("id", "phone")
-        .attr("data-phone", response[i].phone)
-        .attr("href", "tel:+01" + response[i].phone),
-
-      $("<i>")
-        .attr("class", "fas fa-globe-americas")
-        .attr("id", "directions")
-        .attr("href", "directions.html")
-        .attr("data-id", response[i].id)
-    ];
-
-    $(breweryContact).append(contactInfo);
-    $(breweryCard).append(breweryContact);
-    $(".slider").append(breweryCard);
   }
   var queryURLbeerMappingState =
     "https://cors-anywhere.herokuapp.com/http://beermapping.com/webservice/loccity/" +
