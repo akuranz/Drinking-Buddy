@@ -93,8 +93,7 @@ img {
 p {
   padding: 5px;
 }
-#name,
-h2 {
+#name, h2 {
   margin: 20px 10px 0 10px;
   color: rgb(202, 84, 40);
   font-weight: 900;
