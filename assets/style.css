@@ -81,7 +81,8 @@ h4 {
   border-radius: 30px;
   width: 300px;
   padding: 0;
-  margin-top: 20px;
+  margin: 20px;
+  display: inline-block;
 }
 img {
   padding: 0;
