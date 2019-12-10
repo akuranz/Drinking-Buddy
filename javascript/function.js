@@ -12,6 +12,9 @@ $(".randomCocktail").css("display", "block");
   method: "GET"
 }).then (function(response){
   console.log("response" , response);
+  $("#search-brewery").css("display", "none");
+  $("#find-brewery").css("display", "none");
+  $("#carousel-demo").css("display", "none");
   var drink = response.drinks[0];
   var name = drink.strDrink;
   var image = drink.strDrinkThumb;

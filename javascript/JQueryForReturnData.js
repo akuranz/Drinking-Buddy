@@ -31,6 +31,14 @@
 //   $("#proxyLink_N").text("Proxy Link: " + response[indexNumName].proxyLink);
 // });
 
+//click event for staying in
+$(".out").on("click", function(){
+  $(".randomCocktail").css("display", "none");
+  $("#search-brewery").css("display", "block");
+  $("#find-brewery").css("display", "block");
+  $("#carousel-demo").css("display", "block");
+})
+
 //Search by State or City
 $("#search-brewery").on("click", function(e) {
   event.preventDefault();
