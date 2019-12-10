@@ -1,9 +1,9 @@
 // BULMA Carousel
-=======
-bulmaCarousel.attach('.carousel', {
-    slidesToScroll: 1,
-    slidesToShow: 3
-});
+
+// bulmaCarousel.attach("#carousel-demo", {
+//   slidesToScroll: 1,
+//   slidesToShow: 3
+// });
 // Cocktail API
 function renderCocktail(){
   $(".randomCocktail").css("display", "block");
@@ -11,8 +11,11 @@ function renderCocktail(){
     $.ajax({
     url:queryURLCocktail,
     method: "GET"
-  }).then (function(response){
-    console.log("response" , response);
+  }).then(function(response) {
+    console.log("response", response);
+    $("#search-brewery").css("display", "none");
+    $("#find-brewery").css("display", "none");
+    $("#carousel-demo").css("display", "none");
     var drink = response.drinks[0];
     var name = drink.strDrink;
     var image = drink.strDrinkThumb;
@@ -36,6 +39,7 @@ function renderCocktail(){
   });
 }
 // Cocktail CTA
-$(".cocktail").on("click", function(){
+$(".cocktail").on("click", function() {
+  event.preventDefault();
   renderCocktail();
 });

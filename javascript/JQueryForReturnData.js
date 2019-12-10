@@ -1,4 +1,11 @@
 //Search by State or City
+$(".out").on("click", function() {
+  $(".randomCocktail").css("display", "none");
+  $("#search-brewery").css("display", "block");
+  $("#find-brewery").css("display", "block");
+  $("#carousel-demo").css("display", "block");
+});
+
 $("#search-brewery").on("click", function(e) {
   e.preventDefault();
   var city = $("#find-brewery")
@@ -75,7 +82,7 @@ $.ajax({
   }).then(function(response) {
     console.log(response);
     $(".carousel").empty();
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < response.length; i++) {
       var breweryCard = $("<div>").attr("class", "item-1 card");
       var breweryInfo = [
         $("<img>").attr("src", "assets/images/brewery.png"),
