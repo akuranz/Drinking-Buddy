@@ -51,6 +51,8 @@
             <div class="col-md">
               <i class="fas fa-car-side directionIcon"></i>
               <i class="fas fa-walking directionIcon"></i>
+              <i class="fas fa-bicycle directionIcon"></i>
+              <i class="fas fa-bus directionIcon"></i>
             </div>
           </div>
           <div id="msg"></div>
@@ -58,16 +60,25 @@
         <ul class="list-group list-group-flush" id="instructions-list"></ul>
         <div class="card-body">
           <a href="#index.html" class="card-link"
-            ><input type="button" class="btn-step" value="New Brewery"
+            ><input
+              type="button"
+              id="new-brewery"
+              class="btn-step"
+              value="New Brewery"
           /></a>
           <a href="#index.html" class="card-link"
-            ><input type="button" class="btn-step" value="Cocktails >>"
+            ><input
+              type="button"
+              id="new-cocktail"
+              class="btn-step"
+              value="Cocktails"
           /></a>
         </div>
       </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="javascript/function.js"></script>
     <script
       type="text/javascript"
       src="./javascript/GoogleMapsDirectionsAPI.js"
