@@ -1,39 +1,13 @@
-//Search by name
-// var APIKey = "10418444aeb3ca5b2578412ce0662909";
-// var piece = $("#find-brewery").val() || "brewery:";
-// var queryURLbeerMappingName =
-//   "https://cors-anywhere.herokuapp.com/http://beermapping.com/webservice/locquery/" +
-//   APIKey +
-//   "/" +
-//   piece +
-//   "&s=json";
-
-// $.ajax({
-//   url: queryURLbeerMappingName,
-//   method: "GET"
-// }).then(function(response) {
-//   console.log(response);
-
-//   var indexNumName = 0;
-//   $("#breweryName_N").text("Name: " + response[indexNumName].name);
-//   $("#status_N").text("Status: " + response[indexNumName].status);
-//   $("#overallRating_N").text("Rating: " + response[indexNumName].overall);
-//   $("#blogMap_N").text("Blog Map: " + response[indexNumName].blogmap);
-//   $("#street_N").text("Street: " + response[indexNumName].street);
-//   $("#city_N").text("City: " + response[indexNumName].city);git a
-//   $("#state_N").text("State: " + response[indexNumName].state);
-//   $("#zip_N").text("Zip: " + response[indexNumName].zip);
-//   $("#country_N").text("Country: " + response[indexNumName].country);
-//   $("#website_N").html("Website: " + response[indexNumName].url);
-//   $("#phone_N").text("Phone: " + response[indexNumName].phone);
-//   $("#imagecount_N").text("Image Count: " + response[indexNumName].imagecount);
-//   $("#reviewLink_N").text("Review Link: " + response[indexNumName].reviewLink);
-//   $("#proxyLink_N").text("Proxy Link: " + response[indexNumName].proxyLink);
-// });
-
 //Search by State or City
-var BreweryLatLng;
-
+$("#search-brewery").on("click", function(e) {
+  e.preventDefault();
+  var city = $("#find-brewery")
+    .val()
+    .trim();
+  if (city === undefined || city === null || city === "") {
+    $("#error").attr("style", "display:block");
+  } else {
+    $("#error").attr("style", "display:none");
 var APIKey = "10418444aeb3ca5b2578412ce0662909";
 var state = $("#find-brewery").val() || "co";
 var queryURLbeerMappingState =
@@ -49,9 +23,6 @@ $.ajax({
 }).then(function(response) {
   console.log(response);
   for (var i = 0; i < 10; i++) {
-    // var sliderItem = $("<div>")
-    //   .attr("class", "slider-item")
-    //   .attr("style", "width: 374px;");
     var breweryCard = $("<div>").attr("class", `"item-${[i+1]} card slide"`);
     var breweryInfo = [
       // $("<iframe>").attr("src", response[i].blogmap), //could make this into iframe if we have time
@@ -89,73 +60,104 @@ $.ajax({
 
     $(breweryContact).append(contactInfo);
     $(breweryCard).append(breweryContact);
-    // $(sliderItem).append(breweryCard);
     $(".slider").append(breweryCard);
   }
-  $("#url").click(function(e) {
-    e.preventDefault();
-    window.location = $(this).attr("href");
-    console.log($(this).attr("href"));
+  var queryURLbeerMappingState =
+    "https://cors-anywhere.herokuapp.com/http://beermapping.com/webservice/loccity/" +
+    APIKey +
+    "/" +
+    city +
+    "&s=json";
+
+  $.ajax({
+    url: queryURLbeerMappingState,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+    $(".carousel").empty();
+    for (var i = 0; i < 10; i++) {
+      var breweryCard = $("<div>").attr("class", "item-1 card");
+      var breweryInfo = [
+        $("<img>").attr("src", "assets/images/brewery.png"),
+        $("<h4>").text(response[i].name),
+        $("<p>").text(response[i].street),
+        $("<p>").text(
+          response[i].city + ", " + response[i].state + response[i].zip
+        )
+      ];
+      breweryCard.append(breweryInfo);
+
+      var breweryContact = $("<div>").attr(
+        "class",
+        "cta row justify-content-center"
+      );
+      var contactInfo = [
+        $("<i>")
+          .addClass("fas fa-globe-americas url")
+          .attr("href", "http://www." + response[i].url)
+          .attr("target", "_blank"), //how do we open in a new window?
+        $("<i>")
+          .addClass("fas fa-phone phone")
+          .attr("href", "tel:+01" + response[i].phone),
+
+        $("<i>")
+          .addClass("fas fa-location-arrow directions")
+          .attr("data-id", response[i].id)
+          .attr("href", "directions.html")
+      ];
+
+      $(breweryContact).append(contactInfo);
+      $(breweryCard).append(breweryContact);
+      $(".carousel").append(breweryCard);
+    }
+
+    console.log($("#directions").attr("data-id"));
   });
-
-  $("#phone").click(function(e) {
-    e.preventDefault();
-    window.location = $(this).attr("href");
-    console.log($(this).attr("href"));
-  });
-
-  $("#directions").click(function(e) {
-    e.preventDefault();
-    window.location = $(this).attr("href");
-    console.log($(this).attr("href"));
-
-    var APIKey = "10418444aeb3ca5b2578412ce0662909";
-    var ID = $(this).attr("data-id");
-    console.log("Id", ID);
-    var queryURLbeerMappingLocInfo =
-      "https://cors-anywhere.herokuapp.com/http://beermapping.com/webservice/locmap/" +
-      APIKey +
-      "/" +
-      ID +
-      "&s=json";
-
-    $.ajax({
-      url: queryURLbeerMappingLocInfo,
-      method: "GET"
-    }).then(function(response) {
-      console.log(response);
-
-      var latitude = response[0].lat;
-      var longitude = response[0].lng;
-      breweryLocation = {
-        Lat: latitude,
-        Lng: longitude
-      };
-      console.log(breweryLocation);
-
-      // function renderCoorButton() {
-      //   var coordButton = $("<button>").attr("class", "coords");
-
-      //   $("#carousel-demo").append(coordButton);
-      // }
-    });
-  });
-  function getCoords(event) {
-    event.preventDefault();
-    console.log(this);
-    // console.log($(this).attr("data-lat"));
-    // console.log($(this).attr("data-lng"));
-    breweryLocation = {
-      lat: $(this).attr("data-lat"),
-      lng: $(this).attr("data-lng")
-    };
-  }
-  // }
-  // console.log("Second Location Call", breweryLocation);
-
-  $("#directions").on("click", getCoords);
 });
 
-// // console.log("First Location Call", breweryLocation);
-// BreweryLatLng = breweryLocation;
-// console.log("Final Location Call", BreweryLatLng);
+$(document).on("click", ".url", function(e) {
+  e.preventDefault();
+  window.location.href = $(this).attr("href");
+  console.log($(this));
+});
+
+$(document).on("click", ".phone", function(e) {
+  e.preventDefault();
+  window.location.href = $(this).attr("href");
+  console.log($(this).attr("href"));
+});
+
+$(document).on("click", ".directions", function(e) {
+  e.preventDefault();
+  var APIKey = "10418444aeb3ca5b2578412ce0662909";
+  var ID = $(this).attr("data-id");
+  console.log("Id", ID);
+  var queryURLbeerMappingLocInfo =
+    "https://cors-anywhere.herokuapp.com/http://beermapping.com/webservice/locmap/" +
+    APIKey +
+    "/" +
+    ID +
+    "&s=json";
+
+  $.ajax({
+    url: queryURLbeerMappingLocInfo,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+
+    var latitude = response[0].lat;
+    var longitude = response[0].lng;
+
+    breweryLocation = {
+      lat: JSON.parse(latitude),
+      lng: JSON.parse(longitude)
+    };
+    console.log("First", breweryLocation);
+    var stringify = JSON.stringify(breweryLocation);
+    console.log(stringify);
+    localStorage.setItem("Brewery Lat/Long", stringify);
+
+    window.location.href = "directions.html";
+    console.log($(this).attr("href"));
+  });
+});
