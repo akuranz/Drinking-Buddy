@@ -1,7 +1,7 @@
 # brewery-finder
 
 ### Description: 
-Finds breweries within a given range of miles and returns information about the beers and service
+Wheather staying at home or going out, this up will help you find what to dring tonight! Going out - Finds breweries within a given city and returns information about the beers and how to get to it. Staying In - finds you a random cocktail you can make in the comfort of your own home!
 
 ### User Story:
 As a beer loving person, I would like to find my favorite beers in my area, so I can find a new favorite spot and get crunk there.
@@ -19,12 +19,11 @@ Automatically find location of advice if they allow or type in a zipe Code
         ** returns buttons that allow user to navigate to brewery website or get directions
 
 ### CSS Framework <!-- update this -->
-Materialize, Skeleton, Bulma, Koala (if we want to use Sass), Foundation is one students have struggled with
+Bootstrap, Materialize, Bulma, 
 
 ### APIs <!-- update this -->
     * Open Brewery DB API (beer location) 
-    * Rate Beer API (accept user input and ratings)  
-    * Digital Pour API (can get the website & rate the beer)
+    * Random cocktail API
     * Google Maps
 
 ### Rough Breakdown of Tasks 
@@ -32,7 +31,7 @@ Materialize, Skeleton, Bulma, Koala (if we want to use Sass), Foundation is one 
     * Find your location
     * Accept user's input about range
     * Accept user's input about type of beer
-    * Accept user's input about location chaaracteristics
+    * Accept user's input about location characteristics
     * Return list of breweries 
     * Include options for direction and to navigate to website and rating specific beers
     * Filter or return specific characteristics of the beer or brewery
