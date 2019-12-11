@@ -16,6 +16,7 @@ h3 {
   background-color: rgba(255, 166, 0, 0.623);
   color: rgb(202, 84, 40);
   font-weight: 500;
+  z-index: 1;
 }
 .btn:hover {
   background-color: rgb(202, 84, 40);
