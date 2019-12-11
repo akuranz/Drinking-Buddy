@@ -9,7 +9,6 @@
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
-
 .bubbles li {
   border-radius: 40px;
   position: absolute;
@@ -22,7 +21,6 @@
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-
 .bubbles li:nth-child(1) {
   width: 40px;
   height: 40px;
@@ -37,7 +35,6 @@
   -webkit-animation-duration: 17s;
   animation-duration: 17s;
 }
-
 .bubbles li:nth-child(3) {
   width: 10px;
   height: 10px;
@@ -47,7 +44,6 @@
   -webkit-animation-duration: 13s;
   animation-duration: 13s;
 }
-
 .bubbles li:nth-child(4) {
   width: 80px;
   height: 80px;
@@ -57,7 +53,6 @@
   -webkit-animation-duration: 22s;
   animation-duration: 22s;
 }
-
 .bubbles li:nth-child(5) {
   width: 50px;
   height: 50px;
@@ -76,7 +71,56 @@
   -webkit-animation-duration: 20s;
   animation-duration: 20s;
 }
-
+.bubbles li:nth-child(7) {
+    width: 30px;
+    height: 30px;
+    left: 90%;
+  }
+  .bubbles li:nth-child(8) {
+    width: 20px;
+    height: 20px;
+    left: 30%;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    -webkit-animation-duration: 17s;
+    animation-duration: 17s;
+  }
+  .bubbles li:nth-child(9) {
+    width: 45px;
+    height: 45px;
+    left: 70%;
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+    -webkit-animation-duration: 13s;
+    animation-duration: 13s;
+  }
+  .bubbles li:nth-child(10) {
+    width: 15px;
+    height: 15px;
+    left: 95%;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+    -webkit-animation-duration: 22s;
+    animation-duration: 22s;
+  }
+  .bubbles li:nth-child(11) {
+    width: 25px;
+    height: 25px;
+    left: 5%;
+    -webkit-animation-delay: 7s;
+    animation-delay: 7s;
+    -webkit-animation-duration: 12s;
+    animation-duration: 12s;
+  }
+  .bubbles li:nth-child(12) {
+    width: 35px;
+    height: 35px;
+    left: 35%;
+    -webkit-animation-delay: 5s;
+    animation-delay: 5s;
+    -webkit-animation-duration: 20s;
+    animation-duration: 20s;
+  }
 @-webkit-keyframes square {
   0% {
       -webkit-transform: translateY(0);
@@ -87,7 +131,6 @@
       transform: translateY(-1080px) rotate(630deg);
   }
 }
-
 @keyframes square {
   0% {
       -webkit-transform: translateY(0);

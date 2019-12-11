@@ -1,9 +1,3 @@
-// BULMA Carousel
-
-// bulmaCarousel.attach("#carousel-demo", {
-//   slidesToScroll: 1,
-//   slidesToShow: 3
-// });
 // Cocktail API
 function renderCocktail(){
   $(".randomCocktail").css("display", "block");
