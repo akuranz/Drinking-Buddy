@@ -67,8 +67,10 @@ i {
   font-size: 30px;
   border-radius: 30px;
   margin: 5px;
+  padding: 5px;
 }
 i:hover {
+  background-color: rgba(255, 166, 0, 0.623);
   color: white;
 }
 h4 {
