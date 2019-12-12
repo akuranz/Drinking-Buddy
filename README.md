@@ -39,3 +39,6 @@ Bootstrap, Materialize, Bulma
     * Filter or return specific characteristics of the beer or brewery
     * Display random cocktail
     * Make it pretty!
+
+### PRESENTATION
+https://docs.google.com/presentation/d/1-HCAhXXBau3U334zF-miAyTSIuHX-QVVcSzFi6gRlbE
